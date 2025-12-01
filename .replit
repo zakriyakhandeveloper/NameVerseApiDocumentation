@@ -6,33 +6,12 @@ expertMode = true
 channel = "stable-25_05"
 
 [workflows]
-runButton = "Project"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "NameVerse API Server"
-
-[[workflows.workflow]]
-name = "NameVerse API Server"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd NameMeaningApiDocumentation && npm start"
-waitForPort = 5000
-
-[workflows.workflow.metadata]
-outputType = "webview"
 
 [[ports]]
 localPort = 5000
 externalPort = 80
 
 [deployment]
-deploymentTarget = "autoscale"
+deploymentTarget = "static"
 run = ["bash", "-c", "cd NameMeaningApiDocumentation && npm start"]
+publicDir = "public"
