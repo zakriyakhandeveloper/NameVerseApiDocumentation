@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "src")));
 
 // Main documentation page (loads all endpoints dynamically)
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 app.get("/docs", (req, res) => {
   res.sendFile(path.join(__dirname, "docs", "Docs.html"));
@@ -218,16 +218,18 @@ app.use((err, req, res, next) => {
 // START SERVER
 // ============================================
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 5000;
+const HOST = '0.0.0.0';
+
+app.listen(PORT, HOST, () => {
   console.log(`
 ╔════════════════════════════════════════════════╗
 ║     🚀 NameVerse API Server Running            ║
 ╠════════════════════════════════════════════════╣
-║  📘 Documentation:   http://localhost:${PORT}/     ║
-║  🎨 Live Testing:    http://localhost:${PORT}/names║
-║  🏥 Health Check:    http://localhost:${PORT}/health║
-║  🔧 API Endpoint:    http://localhost:${PORT}/api/names║
+║  📘 Documentation:   http://${HOST}:${PORT}/     ║
+║  🎨 Live Testing:    http://${HOST}:${PORT}/names║
+║  🏥 Health Check:    http://${HOST}:${PORT}/health║
+║  🔧 API Endpoint:    http://${HOST}:${PORT}/api/names║
 ╚════════════════════════════════════════════════╝
   `);
 });
