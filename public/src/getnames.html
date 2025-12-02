@@ -31,20 +31,20 @@
   
   <!-- Header -->
   <header class="bg-white shadow-sm border-b border-gray-200">
-    <div class="container mx-auto px-6 py-6">
-      <div class="flex items-center justify-between flex-wrap gap-4">
-        <div class="flex items-center space-x-4">
-          <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-            <i class="fas fa-user-tag text-white text-xl"></i>
+    <div class="container mx-auto px-3 sm:px-6 py-3 sm:py-6">
+      <div class="flex items-center justify-between flex-wrap gap-2 sm:gap-4">
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          <div class="w-8 sm:w-12 h-8 sm:h-12 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+            <i class="fas fa-user-tag text-white text-sm sm:text-xl"></i>
           </div>
-          <div>
-            <h1 class="text-2xl font-bold gradient-text">NameVerse API Testing</h1>
-            <p class="text-sm text-gray-600">Test /api/names endpoint</p>
+          <div class="min-w-0">
+            <h1 class="text-lg sm:text-lg sm:text-2xl font-bold gradient-text truncate">NameVerse API Testing</h1>
+            <p class="text-xs sm:text-sm text-gray-600 truncate">Test /api/names endpoint</p>
           </div>
         </div>
-        <div class="flex items-center space-x-3">
-          <a href="/" class="px-4 py-2 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors text-sm font-semibold">
-            <i class="fas fa-book mr-2"></i>Documentation
+        <div class="flex items-center space-x-1 sm:space-x-3">
+          <a href="/" class="px-2 sm:px-4 py-2 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors text-xs sm:text-sm font-semibold">
+            <i class="fas fa-book mr-1 sm:mr-2"></i><span class="hidden sm:inline">Documentation</span><span class="sm:hidden">Docs</span>
           </a>
         </div>
       </div>
@@ -52,8 +52,8 @@
   </header>
 
   <!-- Main Container -->
-  <div class="container mx-auto px-6 py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div class="container mx-auto px-3 sm:px-6 py-4 sm:py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
       
       <!-- LEFT SIDE: FILTERS & CONTROLS -->
       <div class="lg:col-span-1 space-y-6">
@@ -69,7 +69,7 @@
             </div>
             <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">GET</span>
           </div>
-          <div class="bg-gray-900 text-green-400 p-3 rounded-lg font-mono text-xs break-all leading-relaxed" id="apiUrl">
+          <div class="bg-gray-900 break-words word-break overflow-x-auto text-green-400 p-2 sm:p-3 rounded-lg font-mono text-xs sm:text-sm break-all leading-relaxed whitespace-pre-wrap" id="apiUrl">
             /api/names
           </div>
         </div>
@@ -242,8 +242,8 @@
           <div class="w-24 h-24 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-code text-purple-600 text-5xl"></i>
           </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-3">API Testing Console</h3>
-          <p class="text-gray-600 mb-8 max-w-md mx-auto">Configure your filters and click "Send Request" to see the JSON response from the API</p>
+          <h3 class="text-lg sm:text-2xl font-bold text-gray-900 mb-3">API Testing Console</h3>
+          <p class="word-break break-words text-gray-600 mb-8 max-w-md mx-auto">Configure your filters and click "Send Request" to see the JSON response from the API</p>
           <div class="grid grid-cols-3 gap-4 max-w-lg mx-auto">
             <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
               <div class="text-3xl font-bold text-purple-600 mb-1">65K+</div>
@@ -284,7 +284,7 @@
 
           <!-- JSON Display -->
           <div class="p-6">
-            <div class="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+            <div class="bg-gray-900 break-words word-break overflow-x-auto rounded-lg overflow-hidden border border-gray-700">
               <div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
                 <span class="text-xs text-gray-400 font-mono">JSON Response</span>
                 <span class="text-xs text-green-400 font-mono">application/json</span>
@@ -431,15 +431,15 @@
         if (currentData.success) {
           quickStats.innerHTML = `
             <div class="bg-purple-50 rounded-lg p-3">
-              <div class="text-2xl font-bold text-purple-600">${currentData.count || 0}</div>
+              <div class="text-lg sm:text-2xl font-bold text-purple-600">${currentData.count || 0}</div>
               <div class="text-xs text-purple-700 font-semibold">Names Returned</div>
             </div>
             <div class="bg-indigo-50 rounded-lg p-3">
-              <div class="text-2xl font-bold text-indigo-600">${currentData.data?.pagination?.currentPage || 0}/${currentData.data?.pagination?.totalPages || 0}</div>
+              <div class="text-lg sm:text-2xl font-bold text-indigo-600">${currentData.data?.pagination?.currentPage || 0}/${currentData.data?.pagination?.totalPages || 0}</div>
               <div class="text-xs text-indigo-700 font-semibold">Page</div>
             </div>
             <div class="bg-green-50 rounded-lg p-3">
-              <div class="text-2xl font-bold text-green-600">${currentData.data?.pagination?.totalNames || 0}</div>
+              <div class="text-lg sm:text-2xl font-bold text-green-600">${currentData.data?.pagination?.totalNames || 0}</div>
               <div class="text-xs text-green-700 font-semibold">Total Results</div>
             </div>
           `;

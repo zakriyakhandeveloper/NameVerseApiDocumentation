@@ -41,10 +41,6 @@ externalPort = 3002
 localPort = 38951
 externalPort = 3000
 
-[[ports]]
-localPort = 43405
-externalPort = 3001
-
 [deployment]
 deploymentTarget = "static"
 run = ["bash", "-c", "cd NameMeaningApiDocumentation && npm start"]
