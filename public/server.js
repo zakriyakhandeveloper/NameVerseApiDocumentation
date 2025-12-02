@@ -3,6 +3,7 @@ import { readFileSync, existsSync, statSync } from 'fs';
 import { join, extname } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import https from 'https';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -55,30 +56,52 @@ function serveFile(res, filePath) {
   }
 }
 
+function proxyApi(path, res) {
+  const backendUrl = 'https://namverse-api.vercel.app' + path;
+  
+  https.get(backendUrl, (apiRes) => {
+    let data = '';
+    apiRes.on('data', chunk => { data += chunk; });
+    apiRes.on('end', () => {
+      res.writeHead(apiRes.statusCode, {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      });
+      res.end(data);
+    });
+  }).on('error', () => {
+    res.writeHead(502, { 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify({ error: 'Backend unavailable' }));
+  });
+}
+
 const server = createServer((req, res) => {
   const urlPath = req.url.split('?')[0];
   
   if (req.method === 'OPTIONS') {
     res.writeHead(200, {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, HEAD',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type'
     });
     res.end();
     return;
   }
   
+  if (urlPath.startsWith('/api/')) {
+    proxyApi(req.url, res);
+    return;
+  }
+  
   if (urlPath === '/health') {
-    res.writeHead(200, { 
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    });
-    res.end(JSON.stringify({
-      status: "healthy",
-      service: "NameVerse API",
-      version: "1.0.0",
-      timestamp: new Date().toISOString()
-    }, null, 2));
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: "healthy" }));
     return;
   }
 
