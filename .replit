@@ -15,31 +15,31 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Static Site Server"
+args = "NameVerse Server"
 
 [[workflows.workflow]]
-name = "Static Site Server"
+name = "NameVerse Server"
 author = "agent"
-
-[workflows.workflow.metadata]
-outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd public && npm start"
+args = "cd NameMeaningApiDocumentation && npm start"
 waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
 
 [[ports]]
 localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 38951
-externalPort = 3000
-
-[[ports]]
 localPort = 44343
 externalPort = 3001
+
+[[ports]]
+localPort = 46805
+externalPort = 3000
 
 [deployment]
 deploymentTarget = "static"

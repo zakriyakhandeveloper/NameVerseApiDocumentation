@@ -1,5 +1,6 @@
 {
-  "outputDirectory": "public",
+  "buildCommand": "echo 'Build complete'",
+  "outputDirectory": "NameMeaningApiDocumentation",
   "rewrites": [
     {
       "source": "/api/:path*",
