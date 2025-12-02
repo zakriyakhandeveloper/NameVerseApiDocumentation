@@ -185,7 +185,7 @@
           <p class="text-sm text-gray-600 mb-2 font-semibold">Next.js fetch with ISR</p>
           <div class="code-block" style="background: #1e293b; border-radius: 8px; padding: 12px; overflow-x: auto;">
 <pre style="color: #10b981; font-family: 'Courier New', monospace; font-size: 13px; margin: 0;">const response = await fetch(
-  '/api/religion/islamic',
+  'https://api.allorigins.win/raw?url=https://namverse-api.vercel.app/api/religion/islamic',
   { next: { revalidate: 60 } }
 );</pre>
           </div>
@@ -292,7 +292,7 @@
 
 export const revalidate = 60; // ISR: Revalidate every 60 seconds
 
-const API_BASE = '/api/religion';
+const API_BASE = 'https://api.allorigins.win/raw?url=https://namverse-api.vercel.app/api/religion';
 
 export async function generateStaticParams() {
   return ['islamic', 'christian', 'hindu'].map((religion) => ({ 
