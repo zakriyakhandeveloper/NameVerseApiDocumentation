@@ -89,7 +89,23 @@ Run locally: `cd public && npm start`
 Access: http://localhost:5000
 
 ## Production Deployment
+
+### Netlify (Current)
 Live: https://nameverseapidocumentation.netlify.app/
+
+### Vercel Deployment Ready
+To deploy to Vercel:
+1. Push code to GitHub
+2. Go to https://vercel.com → New Project
+3. Import your GitHub repository
+4. Vercel auto-detects `public` folder
+5. Deploy (automatic)
+
+**Note:** `vercel.json` is already configured for:
+- Clean URL routing (client-side router)
+- Proper sitemap.xml and robots.txt serving
+- Cache headers for performance
+- All 28+ pages indexed by Google
 
 ## User Preferences
 - Clean, simple static HTML site with no complex build process
